@@ -1,44 +1,443 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Auto Detailing | Pulido y Cerámica</title>
-    <meta name="description"
-        content="Especialistas en pulido profesional y aplicación de recubrimiento cerámico para vehículos de alta gama.">
+    <title>AutoShine | Detailing de Nivel Élite</title>
+    <!-- Tailwind CSS para agilizar maquetación -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0a0a0a',
+                        darker: '#050505',
+                        anthracite: '#1a1a1a',
+                        accent: '#E30613',
+                        'accent-hover': '#b80510',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
+<body class="antialiased selection:bg-accent selection:text-white">
 
-<body>
-    <header class="hero">
-        <div class="container hero-content">
-            <h1 class="main-title">Perfección en Detalle</h1>
-            <p class="subtitle">Especialistas en Detallado Automotriz de Alta Gama</p>
-            <a href="#" class="cta-button" id="btn-agendar">Agendar Cita</a>
+    <!-- Navegación Premium -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-extrabold tracking-widest font-heading text-white">
+                AUTO<span class="text-accent">SHINE</span>
+            </a>
+            <div class="hidden md:flex space-x-10 text-sm font-semibold tracking-wide text-gray-300 uppercase">
+                <a href="#servicios" class="hover:text-white hover:text-accent transition-colors duration-300">Servicios</a>
+                <a href="#cotizador" class="hover:text-white transition-colors duration-300">Cotizador</a>
+                <a href="#galeria" class="hover:text-white transition-colors duration-300">Galería</a>
+                <a href="#faq" class="hover:text-white transition-colors duration-300">FAQ</a>
+            </div>
+            <a href="#cotizador" class="hidden md:inline-flex btn-primary px-6 py-2.5 rounded text-sm uppercase tracking-wider font-bold">
+                Cotizar Ahora
+            </a>
         </div>
-    </header>
+    </nav>
 
-    <section class="services">
-        <div class="container">
-            <h2 class="section-title">Nuestros Servicios Premium</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="icon">✨</div>
-                    <h3><a href="servicios/pulido.html" class="service-link">Pulido Profesional</a></h3>
-                    <p>Corrección de pintura avanzada. Eliminamos marcas de remolino, arañazos superficiales y
-                        oxidación, restaurando el brillo profundo y original de tu vehículo.</p>
-                </div>
-                <div class="service-card">
-                    <div class="icon">🛡️</div>
-                    <h3><a href="servicios/ceramica.html" class="service-link">Recubrimiento Cerámico</a></h3>
-                    <p>Protección duradera contra los elementos. Nuestro recubrimiento cerámico sella la pintura,
-                        facilita el lavado y ofrece un acabado cristalino inigualable.</p>
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-bg min-h-screen flex items-center justify-center relative pt-20">
+        <!-- Imagen de fondo de alta calidad oscurecida -->
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-15 mix-blend-luminosity z-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-darker/90 via-darker/70 to-darker z-0"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="max-w-5xl mx-auto space-y-8 opacity-0 animate-[fadeIn_1.2s_ease-out_forwards]">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold font-heading leading-tight text-white drop-shadow-2xl">
+                    El reflejo de tu exigencia. <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">Detailing de nivel élite.</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-400 font-light max-w-3xl mx-auto tracking-wide">
+                    Le damos a tu vehículo el trato que se merece.
+                </p>
+                
+                <div class="pt-10 flex flex-col sm:flex-row justify-center items-center gap-6">
+                    <a href="#cotizador" class="btn-primary px-10 py-5 rounded-sm text-lg font-bold uppercase tracking-wider w-full sm:w-auto text-center inline-flex justify-center items-center gap-3">
+                        <span>Ir al Cotizador Inteligente</span>
+                        <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-</body>
 
+    <!-- Servicios Destacados -->
+    <section id="servicios" class="py-24 bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-white mb-4">Nuestros <span class="text-accent">Servicios</span></h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">Técnicas avanzadas y productos de la más alta gama para restaurar y proteger tu inversión.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="bg-anthracite p-8 rounded-xl border border-white/5 hover:border-accent/50 transition-all group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform origin-left">✨</div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Detailing Exterior</h3>
+                    <p class="text-gray-400">Corrección de pintura profesional (1 a 3 pasos), eliminación de swirls, marcas de lavado y arañazos para lograr un brillo tipo espejo inigualable.</p>
+                </div>
+                <!-- Servicio 2 -->
+                <div class="bg-anthracite p-8 rounded-xl border border-white/5 hover:border-accent/50 transition-all group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform origin-left">🛋️</div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Detailing Interior</h3>
+                    <p class="text-gray-400">Limpieza profunda, higienización y acondicionamiento de plásticos, cueros y tapicerías. Restauramos el ambiente interno a condición de agencia.</p>
+                </div>
+                <!-- Servicio 3 -->
+                <div class="bg-anthracite p-8 rounded-xl border border-white/5 hover:border-accent/50 transition-all group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-3 py-1 rounded-bl-lg">PREMIUM</div>
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform origin-left">🛡️</div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Tratamientos Cerámicos</h3>
+                    <p class="text-gray-400">Protección nanotecnológica de larga duración con dureza 9H. Repele el agua, protege contra rayos UV y facilita enormemente el mantenimiento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección del Cotizador Inteligente -->
+    <section id="cotizador" class="min-h-screen bg-darker flex items-center justify-center py-24 border-t border-white/5 relative z-10">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-white mb-4">Cotizador <span class="text-accent">Inteligente</span></h2>
+                <p class="text-gray-400 text-lg">Personaliza tu servicio y obtén un presupuesto estimado al instante.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <!-- Columna de Opciones -->
+                <div class="lg:col-span-2 space-y-10 bg-dark p-8 rounded-xl border border-white/5 shadow-2xl">
+                    
+                    <!-- 1. Talla del Vehículo -->
+                    <div>
+                        <h3 class="text-xl font-heading font-bold text-white mb-4 border-b border-white/10 pb-2">1. Talla del Vehículo</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="size-selector">
+                            <button type="button" class="size-btn border border-accent bg-accent/10 rounded-lg p-4 text-center transition-all hover:border-accent/50 group" data-multiplier="1.0" data-name="Pequeño (S)">
+                                <div class="text-4xl mb-2 group-hover:scale-110 transition-transform">🚗</div>
+                                <div class="font-bold text-white text-sm">Pequeño (S)</div>
+                            </button>
+                            <button type="button" class="size-btn border border-white/10 bg-anthracite rounded-lg p-4 text-center transition-all hover:border-accent/50 group" data-multiplier="1.3" data-name="Mediano (M)">
+                                <div class="text-4xl mb-2 group-hover:scale-110 transition-transform">🚙</div>
+                                <div class="font-bold text-white text-sm">Mediano (M)</div>
+                            </button>
+                            <button type="button" class="size-btn border border-white/10 bg-anthracite rounded-lg p-4 text-center transition-all hover:border-accent/50 group" data-multiplier="1.6" data-name="Grande (L/XL)">
+                                <div class="text-4xl mb-2 group-hover:scale-110 transition-transform">🛻</div>
+                                <div class="font-bold text-white text-sm">Grande (L/XL)</div>
+                            </button>
+                            <button type="button" class="size-btn border border-white/10 bg-anthracite rounded-lg p-4 text-center transition-all hover:border-accent/50 group" data-multiplier="2.5" data-name="Gandola (Chuto)">
+                                <div class="text-4xl mb-2 group-hover:scale-110 transition-transform">🚛</div>
+                                <div class="font-bold text-white text-sm">Gandola (Chuto)</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Estado de la Pintura -->
+                    <div>
+                        <h3 class="text-xl font-heading font-bold text-white mb-4 border-b border-white/10 pb-2">2. Estado de la Pintura</h3>
+                        <div class="px-2 pt-4">
+                            <input type="range" min="0" max="2" value="1" class="w-full h-2 bg-anthracite rounded-lg appearance-none cursor-pointer accent-accent" id="paint-condition">
+                            <div class="flex justify-between text-xs text-gray-400 mt-4 font-semibold uppercase tracking-wider">
+                                <span class="text-center w-1/3 -ml-4">Nuevo / Excelente<br><span class="text-accent text-[10px] lowercase">-20% pulido</span></span>
+                                <span class="text-center w-1/3">Normal (Leves)<br><span class="text-gray-500 text-[10px] lowercase">estándar</span></span>
+                                <span class="text-center w-1/3 -mr-4">Severo (Profundas)<br><span class="text-accent text-[10px] lowercase">+30% pulido</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Módulos Añadibles -->
+                    <div>
+                        <h3 class="text-xl font-heading font-bold text-white mb-4 border-b border-white/10 pb-2">3. Configuración del Servicio</h3>
+                        <div class="space-y-4">
+                            <!-- Nivel de Pulitura -->
+                            <div class="p-4 bg-anthracite rounded-lg border border-white/5">
+                                <div class="text-white font-bold mb-3">Nivel de Pulitura (Corrección de Pintura)</div>
+                                <select id="mod-pulitura" class="w-full bg-dark text-white border border-white/10 rounded-md p-3 focus:border-accent focus:ring-1 focus:ring-accent outline-none appearance-none cursor-pointer font-medium">
+                                    <option value="0">Sin pulitura</option>
+                                    <option value="40">1 Paso (Abrillantado)</option>
+                                    <option value="60">2 Pasos (Corrección Media)</option>
+                                    <option value="80" selected>3 Pasos (Corrección Full)</option>
+                                </select>
+                            </div>
+
+                            <!-- Lavado Base -->
+                            <label class="flex items-center justify-between p-4 bg-anthracite rounded-lg border border-white/5 cursor-pointer hover:border-accent/30 transition-all">
+                                <div class="flex items-center gap-4">
+                                    <input type="checkbox" id="mod-lavado" class="w-5 h-5 accent-accent bg-dark border-gray-600 rounded focus:ring-accent focus:ring-2 cursor-pointer">
+                                    <div>
+                                        <div class="text-white font-bold">Lavado Base Premium</div>
+                                        <div class="text-xs text-gray-400">Limpieza exterior detallada</div>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <!-- Extras -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <label class="flex items-center gap-3 p-4 bg-anthracite rounded-lg border border-white/5 cursor-pointer hover:border-accent/30 transition-all">
+                                    <input type="checkbox" id="mod-ceramic" checked class="w-5 h-5 accent-accent bg-dark border-gray-600 rounded cursor-pointer">
+                                    <span class="text-white font-semibold">Ceramic Coating</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-4 bg-anthracite rounded-lg border border-white/5 cursor-pointer hover:border-accent/30 transition-all">
+                                    <input type="checkbox" id="mod-interior" checked class="w-5 h-5 accent-accent bg-dark border-gray-600 rounded cursor-pointer">
+                                    <span class="text-white font-semibold">Limpieza Interna Profunda</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-4 bg-anthracite rounded-lg border border-white/5 cursor-pointer hover:border-accent/30 transition-all md:col-span-2">
+                                    <input type="checkbox" id="mod-motor" class="w-5 h-5 accent-accent bg-dark border-gray-600 rounded cursor-pointer">
+                                    <span class="text-white font-semibold">Limpieza Estética de Motor</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Datos de Contacto -->
+                    <div>
+                        <h3 class="text-xl font-heading font-bold text-white mb-4 border-b border-white/10 pb-2">4. Tus Datos</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-400 text-sm font-semibold mb-2">Nombre y Apellido *</label>
+                                <input type="text" id="client-name" class="w-full bg-dark text-white border border-white/10 rounded-md p-3 focus:border-accent focus:ring-1 focus:ring-accent outline-none" placeholder="Ej: Juan Pérez">
+                            </div>
+                            <div>
+                                <label class="block text-gray-400 text-sm font-semibold mb-2">Teléfono / WhatsApp *</label>
+                                <input type="text" id="client-phone" class="w-full bg-dark text-white border border-white/10 rounded-md p-3 focus:border-accent focus:ring-1 focus:ring-accent outline-none" placeholder="Ej: 0414-1234567">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-400 text-sm font-semibold mb-2">Marca y Modelo del Vehículo</label>
+                                <input type="text" id="client-car" class="w-full bg-dark text-white border border-white/10 rounded-md p-3 focus:border-accent focus:ring-1 focus:ring-accent outline-none" placeholder="Ej: Toyota Corolla 2022">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Columna de Resumen -->
+                <div class="lg:col-span-1">
+                    <div class="sticky top-28 bg-gradient-to-b from-anthracite to-dark p-8 rounded-xl border border-white/10 shadow-2xl">
+                        <h3 class="text-2xl font-heading font-extrabold text-white mb-6 border-b border-white/10 pb-4">Tu Presupuesto</h3>
+                        
+                        <div class="space-y-4 mb-8 text-sm" id="summary-items">
+                            <!-- Items dinámicos -->
+                        </div>
+
+                        <div class="border-t border-white/10 pt-6 mb-8">
+                            <div class="flex justify-between items-end">
+                                <span class="text-gray-400 font-semibold uppercase tracking-wider text-sm">Total Estimado</span>
+                                <span class="text-4xl font-heading font-extrabold text-accent" id="total-price">$0</span>
+                            </div>
+                            <p class="text-[10px] text-gray-500 mt-3 text-right leading-tight">*Precios sujetos a inspección presencial y condiciones específicas del vehículo.</p>
+                        </div>
+
+                        <button id="btn-whatsapp" class="w-full btn-primary px-4 py-4 rounded-md text-sm md:text-base font-bold uppercase tracking-wider flex justify-center items-center gap-3 shadow-lg">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                            Enviar a WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Autoridad -->
+    <section class="py-24 bg-dark relative overflow-hidden border-t border-white/5">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div>
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-white mb-6">No es un autolavado.<br>Es <span class="text-accent">Arte sobre Ruedas.</span></h2>
+                <p class="text-gray-400 text-lg mb-6 leading-relaxed">
+                    Nuestra metodología es estrictamente minuciosa. Cada vehículo es inspeccionado bajo iluminación especializada y tratado con microfibras de grado premium para garantizar cero fricción dañina.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-accent shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-300">Medición de espesor de pintura antes de pulir.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-accent shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-300">Químicos de pH balanceado seguros para todo material.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-accent shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-300">Entorno controlado y atención dedicada de un solo vehículo a la vez.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="relative">
+                <div class="absolute inset-0 bg-accent rounded-lg transform translate-x-4 translate-y-4 opacity-50 z-0"></div>
+                <img src="https://images.unsplash.com/photo-1600661653561-629509216228?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Detalle de pulitura" class="rounded-lg shadow-2xl relative z-10 w-full object-cover h-[400px]">
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="py-24 bg-darker border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-white mb-4">Nuestro <span class="text-accent">Portafolio</span></h2>
+                <p class="text-gray-400 text-lg">El resultado de la obsesión por el detalle.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="group relative overflow-hidden rounded-lg aspect-square cursor-pointer" onclick="openGalleryModal('pintura')">
+                    <img src="https://images.unsplash.com/photo-1619682817481-e994891cd1f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Antes y Despues 1" class="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-darker via-darker/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Corrección de Pintura Full</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-lg aspect-square cursor-pointer" onclick="openGalleryModal('interior')">
+                    <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Interior Detailing" class="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-darker via-darker/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Detailing Interior</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-lg aspect-square cursor-pointer" onclick="openGalleryModal('ceramico')">
+                    <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ceramic Coating" class="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-darker via-darker/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Aplicación Cerámica 9H</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="py-24 bg-dark border-t border-white/5 relative">
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/2 h-full bg-accent/5 blur-[150px] pointer-events-none"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-white mb-4">Lo que <span class="text-accent">Dicen</span> de Nosotros</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-anthracite p-8 rounded-xl border border-white/5 relative">
+                    <div class="text-accent text-5xl absolute -top-4 -left-2 opacity-50 font-serif">"</div>
+                    <div class="flex text-accent mb-4">★★★★★</div>
+                    <p class="text-gray-300 italic mb-6">"El carro se ve mejor que de agencia, mi mejor decisión fue haberlo puesto en sus manos."</p>
+                    <div class="font-bold text-white">— Cliente Verificado</div>
+                </div>
+                <div class="bg-anthracite p-8 rounded-xl border border-white/5 relative transform md:-translate-y-4 border-accent/30 shadow-[0_0_30px_rgba(227,6,19,0.1)]">
+                    <div class="text-accent text-5xl absolute -top-4 -left-2 opacity-50 font-serif">"</div>
+                    <div class="flex text-accent mb-4">★★★★★</div>
+                    <p class="text-gray-300 italic mb-6">"Atención al detalle impecable. No es un autolavado, es arte sobre ruedas en San Cristóbal."</p>
+                    <div class="font-bold text-white">— Cliente Verificado</div>
+                </div>
+                <div class="bg-anthracite p-8 rounded-xl border border-white/5 relative">
+                    <div class="text-accent text-5xl absolute -top-4 -left-2 opacity-50 font-serif">"</div>
+                    <div class="flex text-accent mb-4">★★★★★</div>
+                    <p class="text-gray-300 italic mb-6">"Protegieron mi camioneta con cerámico y el agua literalmente resbala. Vale cada centavo."</p>
+                    <div class="font-bold text-white">— Cliente Verificado</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-darker border-t border-white/5">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-white mb-4">Preguntas <span class="text-accent">Frecuentes</span></h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-anthracite rounded-lg border border-white/5 overflow-hidden faq-item">
+                    <button class="faq-btn w-full text-left p-6 flex justify-between items-center text-white font-bold text-lg hover:text-accent transition-colors">
+                        ¿Cuánto tiempo toma el servicio de detailing?
+                        <span class="text-2xl transform transition-transform duration-300 faq-icon">+</span>
+                    </button>
+                    <div class="faq-content px-6 pb-6 text-gray-400 hidden">
+                        <p>Los tiempos de entrega son variables. Un servicio básico puede tomar un día, pero una corrección de pintura de 3 pasos con aplicación de cerámico puede requerir de 3 a 4 días. Nos tomamos el tiempo necesario para alcanzar la perfección, sin apuros.</p>
+                    </div>
+                </div>
+                <div class="bg-anthracite rounded-lg border border-white/5 overflow-hidden faq-item">
+                    <button class="faq-btn w-full text-left p-6 flex justify-between items-center text-white font-bold text-lg hover:text-accent transition-colors">
+                        ¿Cuánto dura el Tratamiento Cerámico?
+                        <span class="text-2xl transform transition-transform duration-300 faq-icon">+</span>
+                    </button>
+                    <div class="faq-content px-6 pb-6 text-gray-400 hidden">
+                        <p>Dependiendo del paquete y cuidado posterior, nuestros recubrimientos cerámicos ofrecen una durabilidad y protección garantizada de 2 a 5 años reales.</p>
+                    </div>
+                </div>
+                <div class="bg-anthracite rounded-lg border border-white/5 overflow-hidden faq-item">
+                    <button class="faq-btn w-full text-left p-6 flex justify-between items-center text-white font-bold text-lg hover:text-accent transition-colors">
+                        ¿Trabajan solo carros o también otros vehículos?
+                        <span class="text-2xl transform transition-transform duration-300 faq-icon">+</span>
+                    </button>
+                    <div class="faq-content px-6 pb-6 text-gray-400 hidden">
+                        <p>¡Tratamos todo tipo de vehículos! Tenemos disponibilidad y paquetes especiales para motos de alta cilindrada, barcos, yates e incluso avionetas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark border-t border-accent border-b-8">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <a href="#" class="text-2xl font-extrabold tracking-widest font-heading text-white inline-block mb-4">
+                        AUTO<span class="text-accent">SHINE</span>
+                    </a>
+                    <p class="text-gray-400 text-sm">El reflejo de tu exigencia en San Cristóbal. Detailing de nivel élite.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Contacto</h4>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li><a href="mailto:autoshine.ve@gmail.com" class="hover:text-accent transition-colors">autoshine.ve@gmail.com</a></li>
+                        <li><a href="https://wa.me/584147080369" target="_blank" class="hover:text-accent transition-colors">+58 414-7080369</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Instagram: @Autoshine.dtl</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Ubicación</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Palmira, Vía principal la Flautera.<br>
+                        San Cristóbal, Táchira, Venezuela.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Horario y Domicilio</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-2">Lunes a Domingo<br>8:00 AM - 5:00 PM (Solo por cita)</p>
+                    <p class="text-xs text-gray-500 italic">*Para servicio a domicilio se requiere espacio bajo techo, acceso a agua y electricidad.</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-12 pt-8 text-center text-gray-600 text-sm flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2026 AutoShine Detailing. Todos los derechos reservados.</p>
+                <div class="mt-4 md:mt-0 space-x-4">
+                    <a href="#" class="hover:text-white transition-colors">Términos</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Galería de Trabajos -->
+    <div id="gallery-modal" class="fixed inset-0 z-[100] bg-darker/95 backdrop-blur-sm hidden flex-col items-center justify-center p-4 md:p-10 opacity-0 transition-opacity duration-300">
+        <button onclick="closeGalleryModal()" class="absolute top-6 right-6 text-white hover:text-accent transition-colors text-5xl font-light leading-none z-50">&times;</button>
+        
+        <div class="w-full max-w-5xl bg-dark border border-white/10 rounded-xl overflow-hidden flex flex-col max-h-[90vh] shadow-2xl relative">
+            <div class="p-6 border-b border-white/10 bg-anthracite">
+                <h3 id="gallery-title" class="text-2xl font-heading font-extrabold text-white">Galería</h3>
+                <p id="gallery-desc" class="text-gray-400 text-sm mt-1">Ejemplos de nuestros resultados.</p>
+            </div>
+            
+            <div class="p-6 overflow-y-auto custom-scrollbar bg-darker" id="gallery-container">
+                <!-- Las imágenes se inyectarán aquí vía JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script src="script.js"></script>
+</body>
 </html>
