@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modPulitura = document.getElementById('mod-pulitura');
     const modCeramic = document.getElementById('mod-ceramic');
     const modInterior = document.getElementById('mod-interior');
+    const modTapiceria = document.getElementById('mod-tapiceria');
+    const modDesmontaje = document.getElementById('mod-desmontaje');
     const modMotor = document.getElementById('mod-motor');
     
     // Inputs del cliente
@@ -17,13 +19,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalPriceEl = document.getElementById('total-price');
     const btnWhatsapp = document.getElementById('btn-whatsapp');
 
-    // Precios Base (Talla S, Estado Normal)
-    const PRICES = {
+    // Cargar Precios Base desde LocalStorage o usar por defecto
+    const DEFAULT_PRICES = {
         lavado: 20,
         ceramic: 40,
         interior: 30,
-        motor: 20
+        tapiceriaTela: 40,
+        tapiceriaCuero: 50,
+        desmontaje: 60,
+        motor: 20,
+        pulitura1: 40,
+        pulitura2: 60,
+        pulitura3: 80
     };
+
+    // Migración de precios existentes a los nuevos
+    let savedPrices = JSON.parse(localStorage.getItem('autoshine_prices'));
+    let PRICES = savedPrices ? { ...DEFAULT_PRICES, ...savedPrices } : DEFAULT_PRICES;
 
     // Estado de la cotización
     let state = {
@@ -32,12 +44,17 @@ document.addEventListener('DOMContentLoaded', () => {
         paintState: 1, // 0: Nuevo, 1: Normal, 2: Severo
         paintName: 'Normal (Leves)',
         paintMult: 1.0,
+        interiorState: 1, // 0: Nuevo, 1: Uso Diario, 2: Muy Sucio
+        interiorName: 'Uso Diario',
+        interiorMult: 1.0,
         mods: {
             lavado: false,
-            pulitura: 80, // Base para 3 pasos en Talla S
+            pulitura: 3, // Nivel (0, 1, 2, 3)
             pulituraName: '3 Pasos (Corrección Full)',
-            ceramic: true,
-            interior: true,
+            ceramic: false,
+            interior: false,
+            tapiceria: 'none', // none, tela, cuero
+            desmontaje: false,
             motor: false
         }
     };
@@ -58,7 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 1. Pulitura (Afectada por Talla Y Estado de Pintura)
         if (state.mods.pulitura > 0) {
-            let pulituraCost = state.mods.pulitura * state.sizeMult * state.paintMult;
+            let basePrice = 0;
+            if (state.mods.pulitura === 1) basePrice = PRICES.pulitura1;
+            else if (state.mods.pulitura === 2) basePrice = PRICES.pulitura2;
+            else if (state.mods.pulitura === 3) basePrice = PRICES.pulitura3;
+
+            let pulituraCost = basePrice * state.sizeMult * state.paintMult;
             total += pulituraCost;
             
             let paintNote = '';
@@ -82,11 +104,31 @@ document.addEventListener('DOMContentLoaded', () => {
             addSummaryItem('Ceramic Coating (Protección)', cost);
         }
 
-        // 4. Limpieza Interna (Afectada por Talla)
+        // 4. Limpieza Interna y Detalles (Afectada por Talla y Estado del Interior)
+        let intNote = '';
+        if (state.interiorMult < 1.0) intNote = '<span class="text-accent">-15% desc. Interior Nuevo</span>';
+        else if (state.interiorMult > 1.0) intNote = '<span class="text-accent">+25% recargo Interior Muy Sucio</span>';
+
         if (state.mods.interior) {
-            let cost = PRICES.interior * state.sizeMult;
+            let cost = PRICES.interior * state.sizeMult * state.interiorMult;
             total += cost;
-            addSummaryItem('Limpieza Interna Profunda', cost);
+            addSummaryItem(`Limpieza Interna Básica <br><span class="text-xs text-gray-500">${intNote}</span>`, cost);
+        }
+
+        if (state.mods.desmontaje) {
+            let cost = PRICES.desmontaje * state.sizeMult * state.interiorMult;
+            total += cost;
+            addSummaryItem(`Limpieza Profunda Extrema (Desmontaje) <br><span class="text-xs text-gray-500">${intNote}</span>`, cost);
+        }
+
+        if (state.mods.tapiceria === 'tela') {
+            let cost = PRICES.tapiceriaTela * state.sizeMult * state.interiorMult;
+            total += cost;
+            addSummaryItem(`Limpieza Tapicería (Tela) <br><span class="text-xs text-gray-500">${intNote}</span>`, cost);
+        } else if (state.mods.tapiceria === 'cuero') {
+            let cost = PRICES.tapiceriaCuero * state.sizeMult * state.interiorMult;
+            total += cost;
+            addSummaryItem(`Limpieza/Hidratación Tapicería (Cuero) <br><span class="text-xs text-gray-500">${intNote}</span>`, cost);
         }
 
         // 5. Limpieza de Motor (Afectada por Talla)
@@ -138,12 +180,33 @@ document.addEventListener('DOMContentLoaded', () => {
         calculate();
     });
 
+    // Eventos: Estado del Interior
+    const interiorSlider = document.getElementById('interior-condition');
+    const interiorNames = ['Nuevo / Leve', 'Uso Diario', 'Muy Sucio'];
+    const interiorMults = [0.85, 1.0, 1.25]; // -15%, Normal, +25%
+    
+    if (interiorSlider) {
+        interiorSlider.addEventListener('input', (e) => {
+            let val = parseInt(e.target.value);
+            state.interiorState = val;
+            state.interiorName = interiorNames[val];
+            state.interiorMult = interiorMults[val];
+            calculate();
+        });
+    }
+
     // Eventos: Checkboxes y Selects
     modLavado.addEventListener('change', (e) => { state.mods.lavado = e.target.checked; calculate(); });
     modCeramic.addEventListener('change', (e) => { state.mods.ceramic = e.target.checked; calculate(); });
     modInterior.addEventListener('change', (e) => { state.mods.interior = e.target.checked; calculate(); });
+    modDesmontaje.addEventListener('change', (e) => { state.mods.desmontaje = e.target.checked; calculate(); });
     modMotor.addEventListener('change', (e) => { state.mods.motor = e.target.checked; calculate(); });
     
+    modTapiceria.addEventListener('change', (e) => {
+        state.mods.tapiceria = e.target.value;
+        calculate();
+    });
+
     modPulitura.addEventListener('change', (e) => {
         state.mods.pulitura = parseInt(e.target.value);
         state.mods.pulituraName = e.target.options[e.target.selectedIndex].text;
@@ -173,12 +236,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         text += `\n`;
         text += `*1. Talla del Vehículo:* ${state.sizeName}\n`;
-        text += `*2. Estado de Pintura:* ${state.paintName}\n\n`;
-        text += `*3. Módulos Seleccionados:*\n`;
+        text += `*2. Estado de Pintura:* ${state.paintName}\n`;
+        if (state.mods.interior) {
+            text += `*3. Estado del Interior:* ${state.interiorName}\n`;
+        }
+        text += `\n*Servicios Seleccionados:*\n`;
         if (state.mods.lavado) text += `✅ Lavado Base Premium\n`;
         if (state.mods.pulitura > 0) text += `✅ Pulitura: ${state.mods.pulituraName}\n`;
         if (state.mods.ceramic) text += `✅ Ceramic Coating\n`;
-        if (state.mods.interior) text += `✅ Limpieza Interna Profunda\n`;
+        if (state.mods.interior) text += `✅ Limpieza Interna Básica\n`;
+        if (state.mods.desmontaje) text += `✅ Limpieza Profunda Extrema (Desmontaje)\n`;
+        if (state.mods.tapiceria === 'tela') text += `✅ Tratamiento Tapicería (Tela)\n`;
+        if (state.mods.tapiceria === 'cuero') text += `✅ Tratamiento Tapicería (Cuero)\n`;
         if (state.mods.motor) text += `✅ Limpieza Estética de Motor\n`;
         
         text += `\n*Precio Estimado Final:* $${total}\n\n`;
@@ -207,6 +276,91 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Admin Panel Logic
+    const btnOpenAdmin = document.getElementById('btn-open-admin');
+    const cotizadorTitle = document.getElementById('cotizador-title');
+    const adminPanel = document.getElementById('admin-panel');
+    const btnCloseAdmin = document.getElementById('close-admin');
+    const btnSavePrices = document.getElementById('btn-save-prices');
+    const saveMsg = document.getElementById('save-msg');
+
+    // Inputs admin
+    const inLavado = document.getElementById('price-lavado');
+    const inCeramic = document.getElementById('price-ceramic');
+    const inInterior = document.getElementById('price-interior');
+    const inTapTela = document.getElementById('price-tapiceria-tela');
+    const inTapCuero = document.getElementById('price-tapiceria-cuero');
+    const inDesmontaje = document.getElementById('price-desmontaje');
+    const inMotor = document.getElementById('price-motor');
+    const inPulitura1 = document.getElementById('price-pulitura1');
+    const inPulitura2 = document.getElementById('price-pulitura2');
+    const inPulitura3 = document.getElementById('price-pulitura3');
+
+    function populateAdminInputs() {
+        inLavado.value = PRICES.lavado;
+        inCeramic.value = PRICES.ceramic;
+        inInterior.value = PRICES.interior;
+        inTapTela.value = PRICES.tapiceriaTela;
+        inTapCuero.value = PRICES.tapiceriaCuero;
+        inDesmontaje.value = PRICES.desmontaje;
+        inMotor.value = PRICES.motor;
+        inPulitura1.value = PRICES.pulitura1;
+        inPulitura2.value = PRICES.pulitura2;
+        inPulitura3.value = PRICES.pulitura3;
+    }
+
+    const openAdminPanel = () => {
+        populateAdminInputs();
+        adminPanel.classList.remove('hidden');
+    };
+
+    if (btnOpenAdmin) {
+        btnOpenAdmin.addEventListener('click', openAdminPanel);
+    }
+    
+    // Fallback oculto por si acaso
+    let clickCount = 0;
+    if (cotizadorTitle) {
+        cotizadorTitle.addEventListener('click', () => {
+            clickCount++;
+            if (clickCount >= 5) {
+                openAdminPanel();
+                clickCount = 0;
+            }
+            clearTimeout(window.clickTimer);
+            window.clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
+        });
+    }
+
+    if (btnCloseAdmin) {
+        btnCloseAdmin.addEventListener('click', () => {
+            adminPanel.classList.add('hidden');
+        });
+    }
+
+    if (btnSavePrices) {
+        btnSavePrices.addEventListener('click', () => {
+            PRICES = {
+                lavado: parseFloat(inLavado.value) || 0,
+                ceramic: parseFloat(inCeramic.value) || 0,
+                interior: parseFloat(inInterior.value) || 0,
+                tapiceriaTela: parseFloat(inTapTela.value) || 0,
+                tapiceriaCuero: parseFloat(inTapCuero.value) || 0,
+                desmontaje: parseFloat(inDesmontaje.value) || 0,
+                motor: parseFloat(inMotor.value) || 0,
+                pulitura1: parseFloat(inPulitura1.value) || 0,
+                pulitura2: parseFloat(inPulitura2.value) || 0,
+                pulitura3: parseFloat(inPulitura3.value) || 0
+            };
+            localStorage.setItem('autoshine_prices', JSON.stringify(PRICES));
+            
+            saveMsg.classList.remove('opacity-0');
+            setTimeout(() => saveMsg.classList.add('opacity-0'), 2000);
+            
+            calculate();
+        });
+    }
 
     // Inicialización al cargar la página
     calculate();
