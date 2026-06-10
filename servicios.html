@@ -6,68 +6,56 @@
     <title>AutoShine - Catálogo de Servicios</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        dark: '#0f1115',
-                        anthracite: '#16191f',
-                        accent: '#3b82f6',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        dark: '#0a0a0a',
+                        darker: '#050505',
+                        anthracite: '#1a1a1a',
+                        accent: '#E30613',
+                        'accent-hover': '#b80510',
                     }
                 }
             }
         }
     </script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f1115;
-            color: #ffffff;
-        }
-        .glass-panel {
-            background: rgba(22, 25, 31, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-    </style>
 </head>
-<body class="bg-dark min-h-screen pb-20">
+<body class="antialiased selection:bg-accent selection:text-white bg-dark">
 
-    <!-- Navbar/Header -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-white/10">
-        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-                    AS
-                </div>
-                <div>
-                    <h1 class="text-xl font-bold tracking-tight">AutoShine</h1>
-                    <p class="text-[10px] text-accent font-semibold tracking-widest uppercase">Premium Detailing</p>
-                </div>
-            </div>
-            <a href="index.html" class="flex items-center gap-2 text-sm font-semibold text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-all border border-white/10">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                Volver al Cotizador
+    <!-- Navegación Premium -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300 py-4 border-b border-white/5">
+        <div class="container mx-auto px-6 flex justify-between items-center max-w-4xl">
+            <a href="index.html" class="text-2xl font-extrabold tracking-widest font-heading text-white">
+                AUTO<span class="text-accent">SHINE</span>
+            </a>
+            <a href="index.html" class="inline-flex btn-primary px-6 py-2.5 rounded text-sm uppercase tracking-wider font-bold">
+                Volver
             </a>
         </div>
-    </header>
+    </nav>
+
+    <!-- Hero Section para Servicios -->
+    <section class="hero-bg min-h-[40vh] flex items-center justify-center relative pt-20 mb-12">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-15 mix-blend-luminosity z-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-darker/90 via-darker/70 to-dark z-0"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <h1 class="text-4xl md:text-6xl font-extrabold font-heading leading-tight text-white drop-shadow-2xl">
+                    Nuestros <span class="text-accent">Servicios</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto tracking-wide">
+                    Conoce a profundidad los procesos, técnicas y beneficios de cada uno de los tratamientos de detailing premium que ofrecemos.
+                </p>
+            </div>
+        </div>
+    </section>
 
     <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-4 mt-8">
-        
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">Nuestros <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Servicios</span></h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">Conoce a profundidad los procesos, técnicas y beneficios de cada uno de los tratamientos de detailing premium que ofrecemos para tu vehículo.</p>
-        </div>
+    <main class="max-w-4xl mx-auto px-4">
 
         <!-- Exterior Section -->
         <div class="mb-16">
@@ -216,5 +204,9 @@
         </div>
 
     </main>
+    
+    <footer class="py-8 border-t border-white/5 mt-20 text-center">
+        <p class="text-gray-500 text-sm">© 2026 AutoShine. Detailing de Nivel Élite.</p>
+    </footer>
 </body>
 </html>
