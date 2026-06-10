@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
             x = Math.max(0, Math.min(x, rect.width));
             const percentage = (x / rect.width) * 100;
             
-            wrapper.style.width = percentage + '%';
+            wrapper.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
             handle.style.left = percentage + '%';
         };
 

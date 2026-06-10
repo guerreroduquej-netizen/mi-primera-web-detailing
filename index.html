@@ -93,19 +93,22 @@
                 <!-- Imagen Después (Limpia) de fondo -->
                 <img src="images/pintura_perfecta.png" class="absolute inset-0 w-full h-full object-cover pointer-events-none" alt="Después">
                 
-                <!-- Imagen Antes (Sucia/Opaca) recortada -->
-                <div class="absolute inset-0 w-1/2 overflow-hidden border-r-4 border-accent shadow-[5px_0_15px_rgba(0,0,0,0.5)] z-10" id="before-image-wrapper">
+                <!-- Imagen Antes (Sucia/Opaca) con clip-path -->
+                <div class="absolute inset-0 w-full h-full z-10" id="before-image-wrapper" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
                     <!-- Imagen generada con rayas reales (Swirls) -->
-                    <img src="images/pintura_antes.png" class="absolute inset-0 w-[200%] h-full object-cover max-w-none pointer-events-none" alt="Antes">
+                    <img src="images/pintura_antes.png" class="absolute inset-0 w-full h-full object-cover pointer-events-none" alt="Antes">
                     
                     <div class="absolute top-4 left-4 bg-black/60 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-widest border border-white/10">Antes</div>
                 </div>
 
                 <div class="absolute top-4 right-4 z-0 bg-accent/80 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-widest">Después</div>
 
-                <!-- Control Deslizador -->
-                <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none" id="slider-handle" style="left: 50%;">
-                    <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center shadow-lg border-2 border-white transform -translate-x-1/2">
+                <!-- Control Deslizador y Línea Divisora -->
+                <div class="absolute top-0 bottom-0 z-20 pointer-events-none" id="slider-handle" style="left: 50%;">
+                    <!-- Línea roja -->
+                    <div class="absolute inset-y-0 -ml-0.5 w-1 bg-accent shadow-[0_0_10px_rgba(0,0,0,0.8)]"></div>
+                    <!-- Botón circular -->
+                    <div class="absolute top-1/2 -ml-5 -mt-5 w-10 h-10 bg-accent rounded-full flex items-center justify-center shadow-lg border-2 border-white">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
                     </div>
                 </div>
