@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoShine - Catálogo de Servicios</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0f1115',
+                        anthracite: '#16191f',
+                        accent: '#3b82f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f1115;
+            color: #ffffff;
+        }
+        .glass-panel {
+            background: rgba(22, 25, 31, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-dark min-h-screen pb-20">
+
+    <!-- Navbar/Header -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-white/10">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                    AS
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">AutoShine</h1>
+                    <p class="text-[10px] text-accent font-semibold tracking-widest uppercase">Premium Detailing</p>
+                </div>
+            </div>
+            <a href="index.html" class="flex items-center gap-2 text-sm font-semibold text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-all border border-white/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Volver al Cotizador
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 mt-8">
+        
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">Nuestros <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">Servicios</span></h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Conoce a profundidad los procesos, técnicas y beneficios de cada uno de los tratamientos de detailing premium que ofrecemos para tu vehículo.</p>
+        </div>
+
+        <!-- Exterior Section -->
+        <div class="mb-16">
+            <h3 class="text-2xl font-bold border-b border-white/10 pb-2 mb-8 flex items-center gap-3">
+                <span class="text-3xl">✨</span> Detailing Exterior
+            </h3>
+
+            <div class="space-y-12">
+                <!-- Lavado Premium -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center glass-panel p-6 rounded-2xl">
+                    <div class="rounded-xl overflow-hidden relative group aspect-[4/3]">
+                        <img src="images/lavado_premium.png" alt="Lavado Premium" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-accent/20 text-accent border border-accent/30 text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Paso Base</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold mb-3">Lavado Base Premium</h4>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                            No es un simple lavado. Utilizamos la técnica de los dos cubos y un pre-lavado con "Snow Foam" (espuma activa) que encapsula y levanta la suciedad sin frotar la pintura. 
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Uso de champú PH neutro.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Limpieza detallada de rines y llantas.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Secado con toallas de microfibra premium y aire a presión para evitar microarañazos (swirls).</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Pulitura -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center glass-panel p-6 rounded-2xl">
+                    <div class="order-2 md:order-1">
+                        <h4 class="text-2xl font-bold mb-3">Pulitura y Corrección de Pintura</h4>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                            Devolvemos el brillo tipo espejo a tu vehículo eliminando rayones superficiales, marcas de agua y la opacidad del barniz mediante procesos mecánicos avanzados.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-300 mb-4">
+                            <li class="flex items-start gap-2"><span class="text-accent">1 Paso:</span> <span>Abrillantado ligero para pinturas en buen estado. Mejora el brillo en un 60%.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">2 Pasos:</span> <span>Corrección media + Abrillantado. Elimina hasta un 80% de defectos.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">3 Pasos:</span> <span>Corrección Severa + Refinado + Abrillantado. Restauración completa tipo exhibición.</span></li>
+                        </ul>
+                    </div>
+                    <div class="rounded-xl overflow-hidden relative group aspect-[4/3] order-1 md:order-2">
+                        <img src="images/pulitura.png" alt="Pulitura" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    </div>
+                </div>
+
+                <!-- Ceramic Coating -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center glass-panel p-6 rounded-2xl">
+                    <div class="rounded-xl overflow-hidden relative group aspect-[4/3]">
+                        <img src="images/ceramic_coating.png" alt="Ceramic Coating" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-accent/20 text-accent border border-accent/30 text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Protección Máxima</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold mb-3">Ceramic Coating</h4>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                            Una armadura líquida de cuarzo o SiO2 que se adhiere a nivel molecular con el barniz del vehículo, creando una capa cristalina de dureza extrema.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Efecto hidrofóbico extremo (repela agua y suciedad).</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Protección contra rayos UV, evitando que la pintura se destiña.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Resistencia química contra heces de aves y savia de árboles.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Facilita enormemente los lavados futuros.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interior & Engine Section -->
+        <div class="mb-16">
+            <h3 class="text-2xl font-bold border-b border-white/10 pb-2 mb-8 flex items-center gap-3">
+                <span class="text-3xl">🛋️</span> Interior, Tapicería y Motor
+            </h3>
+
+            <div class="space-y-12">
+                <!-- Limpieza Profunda -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center glass-panel p-6 rounded-2xl">
+                    <div class="order-2 md:order-1">
+                        <h4 class="text-2xl font-bold mb-3">Limpieza Interna Profunda Extrema</h4>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                            Llegamos a los rincones que un lavado tradicional nunca alcanza. No solo aspiramos, descontaminamos todo el habitáculo del vehículo.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-300 mb-4">
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Desmontaje de butacas y asientos para acceso total.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Limpieza de plásticos, tableros y consolas con pinceles de cerdas suaves.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Acondicionamiento de plásticos para protección UV (sin acabado grasoso).</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Desodorización y eliminación de bacterias.</span></li>
+                        </ul>
+                    </div>
+                    <div class="rounded-xl overflow-hidden relative group aspect-[4/3] order-1 md:order-2">
+                        <img src="images/limpieza_profunda.png" alt="Limpieza Profunda" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    </div>
+                </div>
+
+                <!-- Tapiceria -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center glass-panel p-6 rounded-2xl">
+                    <div class="rounded-xl overflow-hidden relative group aspect-[4/3]">
+                        <img src="images/tapiceria.png" alt="Tapiceria" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold mb-3">Tratamiento de Tapicería</h4>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                            Procesos especializados dependiendo del material de tus asientos para restaurarlos a su estado de agencia.
+                        </p>
+                        <ul class="space-y-4 text-sm text-gray-300">
+                            <li>
+                                <strong class="text-white">Tapicería de Tela:</strong><br>
+                                Lavado por inyección y extracción. Disparamos limpiador profundo en la tela y lo aspiramos inmediatamente junto con la suciedad incrustada, ácaros y manchas rebeldes.
+                            </li>
+                            <li>
+                                <strong class="text-white">Tapicería de Cuero:</strong><br>
+                                Limpieza segura con cepillos de cerdas de caballo para limpiar los poros del cuero sin dañarlo, seguido de un acondicionador premium que devuelve la flexibilidad, el olor original y evita cuarteamientos.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Motor -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center glass-panel p-6 rounded-2xl">
+                    <div class="order-2 md:order-1">
+                        <h4 class="text-2xl font-bold mb-3">Limpieza Estética de Motor</h4>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                            Un motor limpio no solo se ve espectacular, sino que funciona a temperaturas más frescas y permite detectar fugas fácilmente.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-300 mb-4">
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Aislamiento de componentes eléctricos y tomas de aire sensibles.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Uso de desengrasantes dieléctricos seguros.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Limpieza a detalle con pinceles.</span></li>
+                            <li class="flex items-start gap-2"><span class="text-accent">✓</span> <span>Acondicionamiento de plásticos y mangueras para un acabado "como nuevo".</span></li>
+                        </ul>
+                    </div>
+                    <div class="rounded-xl overflow-hidden relative group aspect-[4/3] order-1 md:order-2">
+                        <img src="images/motor.png" alt="Motor" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>
