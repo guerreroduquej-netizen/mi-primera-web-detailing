@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const clientName = document.getElementById('client-name');
     const clientPhone = document.getElementById('client-phone');
     const clientCar = document.getElementById('client-car');
+    const clientDate = document.getElementById('client-date');
+    const clientTime = document.getElementById('client-time');
     
     const summaryItems = document.getElementById('summary-items');
     const totalPriceEl = document.getElementById('total-price');
@@ -49,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
         interiorMult: 1.0,
         mods: {
             lavado: false,
-            pulitura: 3, // Nivel (0, 1, 2, 3)
-            pulituraName: '3 Pasos (Corrección Full)',
+            pulitura: 0, // Nivel (0, 1, 2, 3)
+            pulituraName: '',
             ceramic: false,
             interior: false,
             tapiceria: 'none', // none, tela, cuero
@@ -231,8 +233,14 @@ document.addEventListener('DOMContentLoaded', () => {
         text += `*Datos del Cliente:*\n`;
         text += `👤 Nombre: ${clientName.value.trim()}\n`;
         text += `📞 Teléfono: ${clientPhone.value.trim()}\n`;
-        if (clientCar.value.trim()) {
+        if (clientCar && clientCar.value.trim()) {
             text += `🚘 Vehículo: ${clientCar.value.trim()}\n`;
+        }
+        if (clientDate && clientDate.value) {
+            text += `📅 Fecha de Cita: ${clientDate.value}\n`;
+        }
+        if (clientTime && clientTime.value) {
+            text += `⏰ Hora Preferida: ${clientTime.value}\n`;
         }
         text += `\n`;
         text += `*1. Talla del Vehículo:* ${state.sizeName}\n`;
@@ -359,6 +367,38 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => saveMsg.classList.add('opacity-0'), 2000);
             
             calculate();
+        });
+    }
+
+    // Slider Antes/Después
+    const slider = document.getElementById('before-after-slider');
+    const wrapper = document.getElementById('before-image-wrapper');
+    const handle = document.getElementById('slider-handle');
+    
+    if (slider) {
+        let isSliding = false;
+
+        const moveSlider = (clientX) => {
+            const rect = slider.getBoundingClientRect();
+            let x = clientX - rect.left;
+            x = Math.max(0, Math.min(x, rect.width));
+            const percentage = (x / rect.width) * 100;
+            
+            wrapper.style.width = percentage + '%';
+            handle.style.left = percentage + '%';
+        };
+
+        slider.addEventListener('mousedown', () => isSliding = true);
+        window.addEventListener('mouseup', () => isSliding = false);
+        window.addEventListener('mousemove', (e) => {
+            if (isSliding) moveSlider(e.clientX);
+        });
+
+        // Soporte Táctil
+        slider.addEventListener('touchstart', () => isSliding = true);
+        window.addEventListener('touchend', () => isSliding = false);
+        window.addEventListener('touchmove', (e) => {
+            if (isSliding) moveSlider(e.touches[0].clientX);
         });
     }
 

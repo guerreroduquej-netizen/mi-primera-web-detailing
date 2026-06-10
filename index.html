@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoShine | Detailing de Nivel Élite</title>
+    <meta name="description" content="Cotizador Inteligente - Descubre cuánto cuesta dejar tu auto como nuevo. Especialistas en Detailing.">
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mi-primera-web-detailing-hft3vmm4h.vercel.app/">
+    <meta property="og:title" content="AutoShine | Detailing de Nivel Élite">
+    <meta property="og:description" content="Cotizador Inteligente - Descubre cuánto cuesta dejar tu auto como nuevo. Especialistas en Detailing Premium.">
+    <meta property="og:image" content="https://mi-primera-web-detailing-hft3vmm4h.vercel.app/images/banner_seo.png">
+
     <!-- Tailwind CSS para agilizar maquetación -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
@@ -68,6 +76,38 @@
                     <a href="servicios.html" class="bg-transparent text-white border-2 border-white/20 hover:border-accent hover:bg-accent/10 px-10 py-5 rounded-sm text-lg font-bold uppercase tracking-wider w-full sm:w-auto text-center inline-flex justify-center items-center gap-3 transition-all duration-300">
                         <span>Catálogo de Servicios</span>
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slider Antes y Después -->
+    <section class="py-20 bg-darker border-y border-white/5 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-white mb-4">El Poder del <span class="text-accent">Detailing</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Desliza la barra para descubrir la diferencia abismal entre una pintura rayada y una corrección de nivel exhibición.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto relative rounded-2xl overflow-hidden aspect-[16/9] cursor-ew-resize group shadow-[0_0_50px_rgba(227,6,19,0.15)] border border-white/10" id="before-after-slider">
+                <!-- Imagen Después (Limpia) de fondo -->
+                <img src="images/pintura_perfecta.png" class="absolute inset-0 w-full h-full object-cover pointer-events-none" alt="Después">
+                
+                <!-- Imagen Antes (Sucia/Opaca) recortada -->
+                <div class="absolute inset-0 w-1/2 overflow-hidden border-r-4 border-accent shadow-[5px_0_15px_rgba(0,0,0,0.5)] z-10" id="before-image-wrapper">
+                    <!-- Usamos la misma imagen pero con filtros CSS pesados para simular daño/opacidad -->
+                    <img src="images/pintura_perfecta.png" class="absolute inset-0 w-[200%] h-full object-cover max-w-none filter grayscale-[40%] contrast-75 brightness-75 blur-[1px] pointer-events-none" alt="Antes">
+                    
+                    <div class="absolute top-4 left-4 bg-black/60 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-widest border border-white/10">Antes</div>
+                </div>
+
+                <div class="absolute top-4 right-4 z-0 bg-accent/80 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-widest">Después</div>
+
+                <!-- Control Deslizador -->
+                <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none" id="slider-handle" style="left: 50%;">
+                    <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center shadow-lg border-2 border-white transform -translate-x-1/2">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+                    </div>
                 </div>
             </div>
         </div>
@@ -245,10 +285,10 @@
                                     <div class="p-4 bg-anthracite rounded-lg border border-white/5">
                                         <div class="text-white font-bold mb-3">Nivel de Pulitura (Corrección de Pintura)</div>
                                         <select id="mod-pulitura" class="w-full bg-dark text-white border border-white/10 rounded-md p-3 focus:border-accent focus:ring-1 focus:ring-accent outline-none appearance-none cursor-pointer font-medium">
-                                            <option value="0">Sin pulitura</option>
+                                            <option value="0" selected>Sin pulitura</option>
                                             <option value="1">1 Paso (Abrillantado)</option>
                                             <option value="2">2 Pasos (Corrección Media)</option>
-                                            <option value="3" selected>3 Pasos (Corrección Full)</option>
+                                            <option value="3">3 Pasos (Corrección Full)</option>
                                         </select>
                                     </div>
 
@@ -345,6 +385,14 @@
                                 <label class="block text-gray-400 text-sm font-semibold mb-2">Marca y Modelo del Vehículo</label>
                                 <input type="text" id="client-car" class="w-full bg-dark text-white border border-white/10 rounded-md p-3 focus:border-accent focus:ring-1 focus:ring-accent outline-none" placeholder="Ej: Toyota Corolla 2022">
                             </div>
+                            <div>
+                                <label class="block text-gray-400 text-sm font-semibold mb-2">Fecha Estimada para Cita</label>
+                                <input type="date" id="client-date" class="w-full bg-dark text-white border border-white/10 rounded-md p-3 focus:border-accent focus:ring-1 focus:ring-accent outline-none [color-scheme:dark]">
+                            </div>
+                            <div>
+                                <label class="block text-gray-400 text-sm font-semibold mb-2">Hora Preferida</label>
+                                <input type="time" id="client-time" class="w-full bg-dark text-white border border-white/10 rounded-md p-3 focus:border-accent focus:ring-1 focus:ring-accent outline-none [color-scheme:dark]">
+                            </div>
                         </div>
                     </div>
 
@@ -437,31 +485,47 @@
         </div>
     </section>
 
-    <!-- Testimonios -->
-    <section class="py-24 bg-dark border-t border-white/5 relative">
-        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/2 h-full bg-accent/5 blur-[150px] pointer-events-none"></div>
-        <div class="container mx-auto px-6 relative z-10">
+    <!-- Prueba Social (Testimonios) -->
+    <section class="py-24 bg-dark border-t border-white/5 relative z-10">
+        <div class="container mx-auto px-6 max-w-6xl">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-white mb-4">Lo que <span class="text-accent">Dicen</span> de Nosotros</h2>
+                <h2 class="text-3xl md:text-5xl font-heading font-extrabold text-white mb-4">Lo que dicen <span class="text-accent">nuestros clientes</span></h2>
+                <p class="text-gray-400">Resultados que hablan por sí solos.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-anthracite p-8 rounded-xl border border-white/5 relative">
-                    <div class="text-accent text-5xl absolute -top-4 -left-2 opacity-50 font-serif">"</div>
-                    <div class="flex text-accent mb-4">★★★★★</div>
-                    <p class="text-gray-300 italic mb-6">"El carro se ve mejor que de agencia, mi mejor decisión fue haberlo puesto en sus manos."</p>
-                    <div class="font-bold text-white">— Cliente Verificado</div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-anthracite p-6 rounded-xl border border-white/5 shadow-lg">
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">"Sinceramente pensé que mi carro necesitaba ser pintado de nuevo. Le hicieron la pulitura de 3 pasos y el cerámico, y quedó mejor que cuando lo saqué del concesionario. Vale cada centavo."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-700"></div>
+                        <div>
+                            <div class="text-white font-bold text-sm">Carlos M.</div>
+                            <div class="text-gray-500 text-xs">Toyota 4Runner</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-anthracite p-8 rounded-xl border border-white/5 relative transform md:-translate-y-4 border-accent/30 shadow-[0_0_30px_rgba(227,6,19,0.1)]">
-                    <div class="text-accent text-5xl absolute -top-4 -left-2 opacity-50 font-serif">"</div>
-                    <div class="flex text-accent mb-4">★★★★★</div>
-                    <p class="text-gray-300 italic mb-6">"Atención al detalle impecable. No es un autolavado, es arte sobre ruedas en San Cristóbal."</p>
-                    <div class="font-bold text-white">— Cliente Verificado</div>
+                <div class="bg-anthracite p-6 rounded-xl border border-white/5 shadow-lg relative transform md:-translate-y-4 border-accent/30 shadow-[0_0_30px_rgba(227,6,19,0.1)]">
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">"Dejé mi camioneta familiar después de 3 años de uso con niños. La limpieza interna extrema la devolvió a la vida. Las manchas de los asientos desaparecieron por completo."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-700"></div>
+                        <div>
+                            <div class="text-white font-bold text-sm">Mariana P.</div>
+                            <div class="text-gray-500 text-xs">Ford Explorer</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-anthracite p-8 rounded-xl border border-white/5 relative">
-                    <div class="text-accent text-5xl absolute -top-4 -left-2 opacity-50 font-serif">"</div>
-                    <div class="flex text-accent mb-4">★★★★★</div>
-                    <p class="text-gray-300 italic mb-6">"Protegieron mi camioneta con cerámico y el agua literalmente resbala. Vale cada centavo."</p>
-                    <div class="font-bold text-white">— Cliente Verificado</div>
+                <div class="bg-anthracite p-6 rounded-xl border border-white/5 shadow-lg">
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
+                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">"Profesionalismo desde el momento en que envié la cotización por WhatsApp. Me explicaron cada paso y el lavado de motor lo hicieron con mucho cuidado. 100% recomendados."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-700"></div>
+                        <div>
+                            <div class="text-white font-bold text-sm">Luis G.</div>
+                            <div class="text-gray-500 text-xs">Honda Civic</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
